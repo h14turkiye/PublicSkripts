@@ -1,0 +1,147 @@
+import:
+	java.util.HashMap
+	java.lang.StringBuilder
+	
+function getWidth(char: text) :: number:
+	return {-h1.centerize::hashmap}.get({_char})
+	
+function getBoldWidth(char: text) :: number:
+	{_char} = " ":
+		return 3
+	return getWidth({_char}) + 1
+	
+# It does with pixels unlike anyother.
+function getCenteredText(text: text, maxPixel: number) :: text:
+	return "%getCenterPad({_text}, {_maxPixel})%%{_text}%"
+
+# Use 114 for book, 154 for chat
+function getCenterPad(text: text, maxPixel: number) :: text:
+	set {_messagePxSize} to 0
+	set {_previousCode} to false
+	set {_isBold} to false
+	
+	loop split {_text} at "":
+		set {_c} to loop-value
+		if {_c} = "§":
+			set {_previousCode} to true
+			continue
+		else if {_previousCode} = true:
+			set {_previousCode} to false
+			if {_c} is "l" or "L":
+				set {_isBold} to true
+				continue
+			else:
+				set {_isBold} to false
+		else:
+			delete {_toAdd}
+			if {_isBold} is true:
+				add getBoldWidth({_char}) to {_toAdd}
+			set {_messagePxSize} to {_messagePxSize} + ({_toAdd} otherwise getWidth({_char})) + 1
+	set {_halvedMessageSize} to {_messagePxSize} / 2
+	set {_toCompensate} to {_maxPixel} - {_halvedMessageSize}
+	set {_spaceWidth} to 4
+	set {_compensated} to 0
+	set {_sb} to new StringBuilder()
+	while {_compensated} < {_toCompensate}:
+		{_sb}.append(" ")
+		set {_compensated} to {_compensated} + {_spaceWidth}
+	return {_sb}.toString()
+
+on load:
+	set {-h1.centerize::hashmap} to new HashMap()
+	{-h1.centerize::hashmap}.put("A", 5)
+	{-h1.centerize::hashmap}.put("A", 5)
+	{-h1.centerize::hashmap}.put("a", 5)
+	{-h1.centerize::hashmap}.put("B", 5)
+	{-h1.centerize::hashmap}.put("b", 5)
+	{-h1.centerize::hashmap}.put("C", 5)
+	{-h1.centerize::hashmap}.put("c", 5)
+	{-h1.centerize::hashmap}.put("D", 5)
+	{-h1.centerize::hashmap}.put("d", 5)
+	{-h1.centerize::hashmap}.put("E", 5)
+	{-h1.centerize::hashmap}.put("e", 5)
+	{-h1.centerize::hashmap}.put("F", 5)
+	{-h1.centerize::hashmap}.put("f", 4)
+	{-h1.centerize::hashmap}.put("G", 5)
+	{-h1.centerize::hashmap}.put("g", 5)
+	{-h1.centerize::hashmap}.put("H", 5)
+	{-h1.centerize::hashmap}.put("h", 5)
+	{-h1.centerize::hashmap}.put("I", 3)
+	{-h1.centerize::hashmap}.put("i", 1)
+	{-h1.centerize::hashmap}.put("J", 5)
+	{-h1.centerize::hashmap}.put("j", 5)
+	{-h1.centerize::hashmap}.put("K", 5)
+	{-h1.centerize::hashmap}.put("k", 4)
+	{-h1.centerize::hashmap}.put("L", 5)
+	{-h1.centerize::hashmap}.put("l", 1)
+	{-h1.centerize::hashmap}.put("M", 5)
+	{-h1.centerize::hashmap}.put("m", 5)
+	{-h1.centerize::hashmap}.put("N", 5)
+	{-h1.centerize::hashmap}.put("n", 5)
+	{-h1.centerize::hashmap}.put("O", 5)
+	{-h1.centerize::hashmap}.put("o", 5)
+	{-h1.centerize::hashmap}.put("P", 5)
+	{-h1.centerize::hashmap}.put("p", 5)
+	{-h1.centerize::hashmap}.put("Q", 5)
+	{-h1.centerize::hashmap}.put("q", 5)
+	{-h1.centerize::hashmap}.put("R", 5)
+	{-h1.centerize::hashmap}.put("r", 5)
+	{-h1.centerize::hashmap}.put("S", 5)
+	{-h1.centerize::hashmap}.put("s", 5)
+	{-h1.centerize::hashmap}.put("T", 5)
+	{-h1.centerize::hashmap}.put("t", 4)
+	{-h1.centerize::hashmap}.put("U", 5)
+	{-h1.centerize::hashmap}.put("u", 5)
+	{-h1.centerize::hashmap}.put("V", 5)
+	{-h1.centerize::hashmap}.put("v", 5)
+	{-h1.centerize::hashmap}.put("W", 5)
+	{-h1.centerize::hashmap}.put("w", 5)
+	{-h1.centerize::hashmap}.put("X", 5)
+	{-h1.centerize::hashmap}.put("x", 5)
+	{-h1.centerize::hashmap}.put("Y", 5)
+	{-h1.centerize::hashmap}.put("y", 5)
+	{-h1.centerize::hashmap}.put("Z", 5)
+	{-h1.centerize::hashmap}.put("z", 5)
+	{-h1.centerize::hashmap}.put("1", 5)
+	{-h1.centerize::hashmap}.put("2", 5)
+	{-h1.centerize::hashmap}.put("3", 5)
+	{-h1.centerize::hashmap}.put("4", 5)
+	{-h1.centerize::hashmap}.put("5", 5)
+	{-h1.centerize::hashmap}.put("6", 5)
+	{-h1.centerize::hashmap}.put("7", 5)
+	{-h1.centerize::hashmap}.put("8", 5)
+	{-h1.centerize::hashmap}.put("9", 5)
+	{-h1.centerize::hashmap}.put("0", 5)
+	{-h1.centerize::hashmap}.put("!", 1)
+	{-h1.centerize::hashmap}.put("@", 6)
+	{-h1.centerize::hashmap}.put("##", 5)
+	{-h1.centerize::hashmap}.put("$", 5)
+	{-h1.centerize::hashmap}.put("%%", 5)
+	{-h1.centerize::hashmap}.put("^", 5)
+	{-h1.centerize::hashmap}.put("&", 5)
+	{-h1.centerize::hashmap}.put("*", 5)
+	{-h1.centerize::hashmap}.put("(", 4)
+	{-h1.centerize::hashmap}.put(")", 4)
+	{-h1.centerize::hashmap}.put("-", 5)
+	{-h1.centerize::hashmap}.put("_", 5)
+	{-h1.centerize::hashmap}.put("+", 5)
+	{-h1.centerize::hashmap}.put("=", 5)
+	{-h1.centerize::hashmap}.put("{", 4)
+	{-h1.centerize::hashmap}.put("}", 4)
+	{-h1.centerize::hashmap}.put("[", 3)
+	{-h1.centerize::hashmap}.put("]", 3)
+	{-h1.centerize::hashmap}.put(":", 1)
+	{-h1.centerize::hashmap}.put(";", 1)
+	{-h1.centerize::hashmap}.put("""", 3)
+	{-h1.centerize::hashmap}.put("", 1)
+	{-h1.centerize::hashmap}.put("<", 4)
+	{-h1.centerize::hashmap}.put(">", 4)
+	{-h1.centerize::hashmap}.put("?", 5)
+	{-h1.centerize::hashmap}.put("/", 5)
+	{-h1.centerize::hashmap}.put("\", 5)
+	{-h1.centerize::hashmap}.put("|", 1)
+	{-h1.centerize::hashmap}.put("~", 5)
+	{-h1.centerize::hashmap}.put("`", 2)
+	{-h1.centerize::hashmap}.put(".", 1)
+	{-h1.centerize::hashmap}.put(",", 1)
+	{-h1.centerize::hashmap}.put(" ", 3)
